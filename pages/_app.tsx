@@ -1,6 +1,16 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import { ChakraProvider } from "@chakra-ui/react";
+import "@fontsource/open-sans";
+import { SessionProvider } from "next-auth/react";
+import type { AppProps } from "next/app";
+import { theme } from "./_document";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <SessionProvider session={pageProps.session}>
+      <ChakraProvider theme={theme}>
+        {" "}
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </SessionProvider>
+  );
 }
