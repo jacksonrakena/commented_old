@@ -25,6 +25,7 @@ export const authOptions: NextAuthOptions = {
     session: async (params) => {
       console.log("session-params", params);
       //params.session.user = params.user;
+      params.session.id = params.token.id;
       params.session.token = params.token.accessToken;
       return params.session;
     },
